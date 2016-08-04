@@ -14,7 +14,7 @@
 				echo "Error: Could not connect database";
 				exit;
 			}
-			$query = "insert into student values('".
+			$query = "insert into review values('".
 					$id."', '".$score."', '".$review."')";
 			$db -> query("SET NAMES 'UTF8'");
 			$result = $db -> query($query);
