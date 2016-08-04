@@ -44,12 +44,13 @@
 					'NULL','".$name."', '".$gender."', '".$class."', '".
 					$phonenum."', '".$qqnum."', '".$department."', '".
 					$department1."', '".$department2."', '".$department1.
-					"', '".$introduction."')";
+					"', '".$introduction."', 'NULL')";
 			$result = $db -> query($query);
 			if ($result){
 				echo "报名成功";
 			} else {
 				echo "报名失败";
+				echo mysql_error();
 			}
 			$db -> close();
 		?>

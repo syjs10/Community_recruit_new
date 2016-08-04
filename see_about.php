@@ -41,15 +41,16 @@
 			echo "<td>".htmlspecialchars(stripslashes($row['introduction']))."</td>";
 			echo "</tr>";
 			echo "</table></div>";
+			echo "<form class=\"\" action=\"review.php\" method=\"post\">";
+			echo "面试官评价：<br/>";
+			echo "<textarea name=\"review\" rows=\"8\" cols=\"40\"></textarea>";
+			echo "<br/>";
+			echo "面试官打分：<br/>";
+			echo "<input type=\"text\" name=\"score\" maxlength=\"3\">";
+			echo "<input style = \"display:none;\" type=\"text\"name = \"id\" value = \"".$id."\">";
+			echo "<br/>";
+			echo "<input type=\"submit\"value=\"提交\">";
+			echo "</form>"
 		?>
-		<form class="" action="index.html" method="post">
-			面试官评价：<br/>
-			<textarea name="review" rows="8" cols="40"></textarea>
-			<br/>
-			面试官打分：<br/>
-			<input type="text" name="score" maxlength="3">
-			<br/>
-			<input type="submit"value="提交">
-		</form>
 	</body>
 </html>

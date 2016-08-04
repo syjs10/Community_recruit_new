@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>技术部</title>
+		<title>面试</title>
 		<style media="screen">
 			.body{
 				position: absolute;
@@ -21,20 +21,22 @@
 	<body>
 
 		<div class="body">
-			<div class="title">
-				<h1>技术部面试</h1>
-			</div>
+
 			<?php
+
+				$department = $_GET['department'];
 				@ $db = new mysqli('localhost', 'student', 'student123', 'student');
 				if (mysqli_connect_errno()) {
 					echo "Error: Could not connect database.";
 					exit;
 				}
 				$db->query("SET NAMES 'UTF8'");
-				$query = "select * from student where department like '%技术%'";
+				$query = "select * from student where department like '%".$department."%'";
 				$result = $db -> query($query);
 				$num_result = $result->num_rows;
-
+				echo "<div class=\"title\">";
+				echo "<h1>".$department."面试</h1>";
+				echo "</div>";
 				for ($i = 0; $i < $num_result; $i++) {
 					$row = $result->fetch_assoc();
 					echo "<div class = \"display\" >";
