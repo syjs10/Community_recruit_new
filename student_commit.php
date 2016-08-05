@@ -33,7 +33,7 @@
 				$department3 = addslashes($department3);
 				$introduction = addslashes($introduction);
 			}
-			echo $name;
+
 			@ $db = new mysqli('localhost', 'student', 'student123', 'student');
 			if(mysqli_connect_errno()){
 				echo 'Error: Could not connect to database. Please try again.';
@@ -47,7 +47,12 @@
 					"', '".$introduction."', 'NULL')";
 			$result = $db -> query($query);
 			if ($result){
-				echo "报名成功";
+
+				$query1 = "select * from student where name like '".$name."' and phonenum like '".$phonenum."'";
+				$result1 = $db -> query($query1);
+				$row = $result1 -> fetch_assoc();
+
+				echo "<script>alert(\"".$name."同学报名成功\");location.href=\"student_commit_success.php?id=".$row['id']."\"</script>";
 			} else {
 				echo "报名失败";
 				echo mysql_error();

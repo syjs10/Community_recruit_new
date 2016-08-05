@@ -37,6 +37,11 @@
 				echo "<div class=\"title\">";
 				echo "<h1>".$department."面试</h1>";
 				echo "</div>";
+				echo "报名编号查询";
+				echo "<form class=\"\" action=\"see_about.php\" method=\"get\">
+					<input type=\"text\" name=\"id\">
+					<input type=\"submit\" value=\"查询\">
+					</form>";
 				for ($i = 0; $i < $num_result; $i++) {
 					$row = $result->fetch_assoc();
 					echo "<div class = \"display\" >";
@@ -49,6 +54,7 @@
 					echo "</div>";
 				}
 			?>
+
 		</div>
 	</body>
 </html>
