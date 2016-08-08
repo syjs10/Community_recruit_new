@@ -16,33 +16,36 @@
 			$query = "select * from student where id like '".$id."'";
 			$result = $db -> query($query);
 			$row = $result -> fetch_assoc();
-			if ($row['employ_department'] != 'NULL') {
-				if ($row['employ_department1'] != 'NULL'){
-					if ($row['employ_department2'] != 'NULL'){
-						$query1 = "update student set employ_department3 = '".$department."' where id = ".$id;
-						$result1 = $db -> query($query1);
-						if ($result1) {
-							echo "录取成功";
+			if ($row['employ_department'] != 'NULL' && $row['employ_department']!=$department) {
+				if ($row['employ_department1'] != 'NULL'&& $row['employ_department1']!=$department ){
+					if ($row['employ_department2'] != 'NULL' && $row['employ_department2']!=$department){
+						if ( $row['employ_department3']!= $department) {
+							$query1 = "update student set employ_department3 = '".$department."' where id = ".$id;
+							$result1 = $db -> query($query1);
+							if ($result1) {
+								echo "<script>alert(\"录取成功\");location.href=\"xuanren.php?department=".$department."\"</script>";
+							}
 						}
+
 					}else{
 						$query1 = "update student set employ_department2 = '".$department."' where id = ".$id;
 						$result1 = $db -> query($query1);
 						if ($result1) {
-							echo "录取成功";
+							echo "<script>alert(\"录取成功\");location.href=\"xuanren.php?department=".$department."\"</script>";
 						}
 					}
 				}else{
 					$query1 = "update student set employ_department1 = '".$department."' where id = ".$id;
 					$result1 = $db -> query($query1);
 					if ($result1) {
-						echo "录取成功";
+						echo "<script>alert(\"录取成功\");location.href=\"xuanren.php?department=".$department."\"</script>";
 					}
 				}
 			} else {
 				$query1 = "update student set employ_department = '".$department."' where id = ".$id;
 				$result1 = $db -> query($query1);
 				if ($result1) {
-					echo "录取成功";
+					echo "<script>alert(\"录取成功\");location.href=\"xuanren.php?department=".$department."\"</script>";
 				}
 			}
 

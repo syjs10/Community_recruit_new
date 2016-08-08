@@ -56,11 +56,6 @@
 			$query0 = "select * from review where id ='".$id."'and department = '".$department."'";
 			$result1 = $db -> query($query0);
 			$row1 = $result1 -> fetch_assoc();
-			if ($result1){
-				echo "yes";
-			} else {
-				echo "no";
-			}
 			echo "</tr>";
 			echo "<td>评分：</td>";
 			echo "<td>".htmlspecialchars(stripslashes($row1['score']))."</td>";
