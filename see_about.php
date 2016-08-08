@@ -7,6 +7,7 @@
 	<body>
 		<?php
 			$id = $_GET['id'];
+			$department = $_GET['department'];
 			@ $db = new mysqli('localhost', 'student', 'student123', 'student');
 			if (mysqli_connect_errno()) {
 				echo "Error: Could not connect database.";
@@ -49,6 +50,7 @@
 			echo "<input type=\"text\" name=\"score\" maxlength=\"3\">";
 			echo "<input style = \"display:none;\" type=\"text\"name = \"id\" value = \"".$id."\">";
 			echo "<br/>";
+			echo "<input style = \"display:none;\" type=\"text\"name = \"department\" value = \"".$department."\">";
 			echo "<input type=\"submit\"value=\"提交\">";
 			echo "</form>"
 		?>

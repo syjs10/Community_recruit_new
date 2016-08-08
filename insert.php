@@ -17,7 +17,27 @@
 			$result = $db -> query($query);
 			$row = $result -> fetch_assoc();
 			if ($row['employ_department'] != 'NULL') {
-				echo "已经被".$row['employ_department']."录取";
+				if ($row['employ_department1'] != 'NULL'){
+					if ($row['employ_department2'] != 'NULL'){
+						$query1 = "update student set employ_department3 = '".$department."' where id = ".$id;
+						$result1 = $db -> query($query1);
+						if ($result1) {
+							echo "录取成功";
+						}
+					}else{
+						$query1 = "update student set employ_department2 = '".$department."' where id = ".$id;
+						$result1 = $db -> query($query1);
+						if ($result1) {
+							echo "录取成功";
+						}
+					}
+				}else{
+					$query1 = "update student set employ_department1 = '".$department."' where id = ".$id;
+					$result1 = $db -> query($query1);
+					if ($result1) {
+						echo "录取成功";
+					}
+				}
 			} else {
 				$query1 = "update student set employ_department = '".$department."' where id = ".$id;
 				$result1 = $db -> query($query1);

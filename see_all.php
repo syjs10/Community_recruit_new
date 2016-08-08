@@ -52,12 +52,17 @@
 			echo "<tr>";
 			echo "<td>自我介绍：</td>";
 			echo "<td>".htmlspecialchars(stripslashes($row['introduction']))."</td>";
+
+			$query0 = "select * from review where id ='".$id."'and department = '".$department."'";
+			$result1 = $db -> query($query0);
+			$row1 = $result1 -> fetch_assoc();
+			if ($result1){
+				echo "yes";
+			} else {
+				echo "no";
+			}
 			echo "</tr>";
 			echo "<td>评分：</td>";
-			//读取employment表
-			$query1 = "select * from review where id = ".$id;
-			$result1 = $db -> query($query1);
-			$row1 = $result1->fetch_assoc();
 			echo "<td>".htmlspecialchars(stripslashes($row1['score']))."</td>";
 			echo "</tr>";
 			echo "<td>面试官评价：</td>";

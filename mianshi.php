@@ -31,7 +31,7 @@
 					exit;
 				}
 				$db->query("SET NAMES 'UTF8'");
-				$query = "select * from student where department like '%".$department."%'";
+				$query = "select * from student where department like '%".$department."%' or department1 like '%".$department."%' or department2 like '%".$department."%' or department3 like '%".$department."%'";
 				$result = $db -> query($query);
 				$num_result = $result->num_rows;
 				echo "<div class=\"title\">";
@@ -46,11 +46,8 @@
 					$row = $result->fetch_assoc();
 					echo "<div class = \"display\" >";
 					echo "<div class = \"inner\">".($i+1)."."."</div>";
-					echo "<div class = \"inner\" ><a href = \"see_about.php?id=".$row['id']."\">".htmlspecialchars(stripslashes($row['name']))."</a></div>";
+					echo "<div class = \"inner\" ><a href = \"see_about.php?id=".$row['id']."&department=".$department."\">".htmlspecialchars(stripslashes($row['name']))."</a></div>";
 					echo "<div class = \"inner\">".htmlspecialchars(stripslashes($row['gender']))."</div>";
-					echo "<div class = \"inner\">调剂部门: ".htmlspecialchars(stripslashes($row['department1'])).
-					" ".htmlspecialchars(stripslashes($row['department2']))." ".
-					htmlspecialchars(stripslashes($row['department2']))."</div>";
 					echo "</div>";
 				}
 			?>

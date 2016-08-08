@@ -25,56 +25,40 @@
 			<?php
 
 				$department = $_GET['department'];
+				if($department == 'root'){
+					echo "<script>location.href=\"root.php\"</script>";
+				}
 				@ $db = new mysqli('localhost', 'student', 'student123', 'student');
 				if (mysqli_connect_errno()) {
 					echo "Error: Could not connect database.";
 					exit;
 				}
 				$db->query("SET NAMES 'UTF8'");
-				$query = "select * from student where department like '%".$department."%'";
+				$query = "select * from review where department like '".$department."' order by score desc";
 				$result = $db -> query($query);
 				$num_result = $result->num_rows;
 				echo "<div class=\"title\">";
-				echo "<h1>".$department."面试</h1>";
+				echo "<h1>".$department."选人</h1>";
 				echo "</div>";
 				echo "报名人员";
 				for ($i = 0; $i < $num_result; $i++) {
 					$row = $result->fetch_assoc();
+					$query0 = "select * from student where id=".$row['id'];
+					$result0 = $db -> query($query0);
+					$row0 = $result0->fetch_assoc();
 					echo "<div class = \"display\" >";
 					echo "<div class = \"inner\">".($i+1)."."."</div>";
-					echo "<div class = \"inner\" ><a href = \"see_all.php?id=".$row['id']."&department=".$row['department']."\">".htmlspecialchars(stripslashes($row['name']))."</a></div>";
-					echo "<div class = \"inner\">".htmlspecialchars(stripslashes($row['gender']))."</div>";
-					echo "<div class = \"inner\">调剂部门: ".htmlspecialchars(stripslashes($row['department1'])).
-					" ".htmlspecialchars(stripslashes($row['department2']))." ".
-					htmlspecialchars(stripslashes($row['department2']))."</div>";
-					if ($row['employ_department'] != 'NULL') {
-						echo "<div class = \"inner\">已录用</div>";
-					} else {
-						echo "<div class = \"inner\">未录用</div>";
-					}
+					echo "<div class = \"inner\" ><a href = \"see_all.php?id=".$row0['id']."&department=".$department."\">".htmlspecialchars(stripslashes($row0['name']))."</a></div>";
+					echo "<div class = \"inner\">".htmlspecialchars(stripslashes($row0['gender']))."</div>";
+					echo "<div class = \"inner\">其他部门: ".htmlspecialchars(stripslashes($row0['department1'])).
+					" ".htmlspecialchars(stripslashes($row0['department2']))." ".
+					htmlspecialchars(stripslashes($row0['department2']))."</div>";
+					echo "<div class = \"inner\">".htmlspecialchars(stripslashes($row['score']))."</div>";
 					echo "</div>";
 				}
 				echo "<br/>";
-				echo "调剂人员";
-				$query1 = "select * from student where department1 like '%".$department."%'"." or department2 like '%".$department."%'"." or department3 like '%".$department."%'";
-				$result1 = $db -> query($query1);
-				$num_result1 = $result1->num_rows;
-				for ($i = 0; $i < $num_result1; $i++) {
-					$row1 = $result1->fetch_assoc();
-					echo "<div class = \"display\" >";
-					echo "<div class = \"inner\">".($i+1)."."."</div>";
-					echo "<div class = \"inner\" ><a href = \"see_all.php?id=".$row1['id']."&department=".$row1['department']."\">".htmlspecialchars(stripslashes($row1['name']))."</a></div>";
-					echo "<div class = \"inner\">".htmlspecialchars(stripslashes($row1['gender']))."</div>";
-					echo "<div class = \"inner\">调剂部门: ".htmlspecialchars(stripslashes($row1['department1'])).
-					" ".htmlspecialchars(stripslashes($row1['department2']))." ".
-					htmlspecialchars(stripslashes($row1['department2']))."</div>";
-					if ($row1['employ_department'] != 'NULL') {
-						echo "<div class = \"inner\">已录用</div>";
-					} else {
-						echo "<div class = \"inner\">未录用</div>";
-					}
-					echo "</div>";
-				}
+
+
 			?>
 		</div>
 	</body>

@@ -44,7 +44,7 @@
 					'NULL','".$name."', '".$gender."', '".$class."', '".
 					$phonenum."', '".$qqnum."', '".$department."', '".
 					$department1."', '".$department2."', '".$department1.
-					"', '".$introduction."', 'NULL')";
+					"', '".$introduction."', 'NULL','NULL','NULL','NULL')";
 			$result = $db -> query($query);
 			if ($result){
 
